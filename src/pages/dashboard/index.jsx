@@ -40,6 +40,11 @@ const Dashboard = () => {
     setModalVisible(true)
   }
 
+  const logout =()=> {
+    sessionStorage.removeItem('logged')
+    window.location = "/"
+  }
+
   const getData = async () => {
     await axios.get(`${productApiURL}`)
     .then(({data}) => {
@@ -53,12 +58,13 @@ const Dashboard = () => {
     setHeader(header)
     getData()
   }, [])
-
+//sessionStorage.removeItem('logged')
   return (
     <div className="dashboard-container">
-      <h1 className="text-center"> PRODUCT LIST </h1>
+      <h1 className="text-center"> DAFTAR PRODUK</h1>
       <br />
-      <Button color="primary" onClick={() => handleCreate()} > Add Data + </Button>
+      <Button color="primary" onClick={() => handleCreate()} > Add Data + </Button> 
+      <Button color="danger" onClick={() => logout() } > Logout </Button>
       <br />  <br />
       <Table>
         <thead>
